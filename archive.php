@@ -12,7 +12,9 @@ get_header();
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
-
+			<div class="hero-image text-center parallax-window" data-parallax="scroll" data-image-src="<?php echo get_stylesheet_directory_uri(); ?>/imgs/default-header.jpg">
+				
+			</div>
 		<?php if ( have_posts() ) : ?>
 
 			<header class="page-header">
