@@ -1,0 +1,706 @@
+$colour-primary:#2c6a79;
+$colour-secondary:#d7dd3b;
+$opaque-gradient:-moz-linear-gradient(45deg,  rgba(5,53,76,0.92) 0%, rgba(14,84,84,0.92) 100%); /* FF3.6-15 */
+$opaque-gradient:-webkit-linear-gradient(45deg,  rgba(5,53,76,0.92) 0%,rgba(14,84,84,0.92) 100%); /* Chrome10-25,Safari5.1-6 */
+$opaque-gradient:linear-gradient(45deg,  rgba(5,53,76,0.92) 0%,rgba(14,84,84,0.92) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+$dark-grey:#333333;
+$med-grey:#989898;
+$light-grey:#e9e9e9;
+$primary-font:'roboto', sans-serif;
+$secondary-font:'Noto Serif', serif;
+
+
+@import 'normalise';
+@import 'accessibility';
+
+
+@mixin full_bleed{
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+@mixin transition{
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    -ms-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+@mixin button{
+    font-family: $primary-font;
+    background-color: $colour-primary;
+    color: #fff;
+    display: inline-block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    padding: 0.8em 1.8em;
+    letter-spacing: 1px;
+}
+@mixin header_font{
+    font-family: $primary-font;
+    display: inline-block;
+    text-transform: uppercase;
+    border:1px solid;
+    padding:0.8em 1.6em;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+@import 'forms';
+
+
+/*--------------------------------------------------------------
+# Typography
+--------------------------------------------------------------*/
+
+body,
+button,
+input,
+select,
+optgroup{
+	color: #404040;
+	font-family:$primary-font;
+    font-weight: 200;
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	clear: both;
+    font-family: $primary-font;
+}
+h1.page-title{
+    margin-bottom: 2em;
+    margin-top: 0;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+h2 {
+    font-size: 1.32rem;
+    font-family: $secondary-font;
+}
+
+.h3, h3 {
+    font-size: 1rem;
+    text-transform:uppercase;
+    font-weight: 400;
+}
+h4.team-member-header{
+    font-size: 1em;
+    color: $colour-primary;
+    margin-bottom: 0;
+    font-weight: 400;
+}
+p {
+	margin-bottom: 1.3em;
+}
+p.team-member-title{
+    margin-bottom: 1em;
+}
+.section-title{
+    width: 100%;
+    border-top: 2px solid;
+    border-color: $colour-secondary;
+    margin-bottom: 1rem;
+}
+.text-bg{
+    display: inline-block;
+    background: $colour-secondary;
+    color:#000;
+    padding: 12px 22px;
+}
+ul.list-inline{
+    list-style-type: none;
+    li{
+        color: $colour-primary;
+        font-family: $primary-font;
+        font-weight: 400;
+    }
+}
+
+
+
+
+blockquote {
+    color: $colour-primary;
+    font-family: $secondary-font;
+}
+.image-caption{
+    color:$med-grey;
+}
+address {
+	margin: 0 0 1.5em;
+}
+dfn, cite, em, i {
+    font-style: italic;
+}
+pre {
+	background: #eee;
+	font-family: "Courier 10 Pitch", Courier, monospace;
+	font-size: 15px;
+	font-size: 0.9375rem;
+	line-height: 1.6;
+	margin-bottom: 1.6em;
+	max-width: 100%;
+	overflow: auto;
+	padding: 1.6em;
+}
+
+code, kbd, tt, var {
+	font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+	font-size: 15px;
+	font-size: 0.9375rem;
+}
+
+abbr, acronym {
+	border-bottom: 1px dotted #666;
+	cursor: help;
+}
+
+/*-------------------- Links --------------------------*/
+a {
+  color: $colour-primary;
+  &:visited {
+    color: $colour-primary;
+  }
+  &:hover, &:focus, &:active {
+    color: $colour-secondary;
+  }
+  &:focus {
+    outline: thin dotted;
+  }
+  &:hover, &:active {
+    outline: 0;
+  }
+}
+
+
+/*--------------------------------------------------------------
+# Elements
+--------------------------------------------------------------*/
+html {
+	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+	/* Inherit box-sizing to make it easier to change the property for components that leverage other behavior; see https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+	box-sizing: inherit;
+}
+
+body {
+	background: #fff;
+	/* Fallback for when there is no custom background color defined. */
+}
+
+
+img {
+	height: auto;
+	/* Make sure images are scaled correctly. */
+	max-width: 100%;
+	/* Adhere to container width. */
+}
+a.button, 
+.button a{
+    @include button;
+}
+a.button-inv, 
+.button-inv a{
+    @include button;
+    background-color: transparent;
+    border: 1px solid;
+}
+[type=reset], [type=submit], button, html [type=button]{    
+	background: transparent;
+    border: none;
+}
+figure {
+	margin: 1em 0;
+	/* Extra wide images within figure tags don't overflow the content area. */
+}
+
+.page-image{
+    margin-bottom: 1.2em;
+}
+
+/*--------------------------------------------------------------
+# Navigation
+--------------------------------------------------------------*/
+.nav-container{
+	background-color: $colour-primary;
+        &.bg-colour{
+        background-color: $colour-primary!important;
+        }
+        li a{
+            padding-right: 1rem;
+            padding-left: 1rem;
+            color:#fff;
+        }
+        & ul li a:visited{
+            color:#fff;
+        }
+        & ul li a:hover{
+            color:#000;
+        }
+    .container-fluid{
+        max-width: 1340px;
+    }
+}
+.navbar>.container-fluid{
+    -ms-flex-align: initial;
+    align-items: initial;
+}
+.menu-primary-menu-container{
+    text-align: center;
+    margin-top: 126px;
+    }
+.dropdown-menu {
+    position: initial;
+    min-width: 0rem;
+}
+.home-header .container-fluid{
+    max-width: 1340px;
+}
+nav.navbar{
+    font-family: $primary-font;
+    letter-spacing: 0.3px;
+    padding: 0;
+}
+
+.navbar-brand img{
+    height: 60px;
+}
+
+.menu-btn {
+    color: #fff;
+}
+
+#mobile-menu-icon{
+    width: 44px;
+    height: 44px;
+}
+.header-social {
+    margin-top: -9px;
+    margin-left: 15px;
+}
+
+.dropdown-menu {
+    @include transition;
+    position: relative!important;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    width: 100%;
+    max-height: 0;
+    display: block;
+    overflow: hidden;
+    opacity: 0;
+    text-align: center;
+}
+.dropdown-menu.show{
+    max-height: inherit;
+    opacity: 1;
+    padding-bottom: 1em;
+}
+
+
+
+
+
+/*--------------------------------------------------------------
+# Clearings
+--------------------------------------------------------------*/
+.clear:before,
+.clear:after,
+.entry-content:before,
+.entry-content:after,
+.comment-content:before,
+.comment-content:after,
+.site-header:before,
+.site-header:after,
+.site-content:before,
+.site-content:after,
+.site-footer:before,
+.site-footer:after {
+	content: "";
+	display: table;
+	table-layout: fixed;
+}
+
+.clear:after,
+.entry-content:after,
+.comment-content:after,
+.site-header:after,
+.site-content:after,
+.site-footer:after {
+	clear: both;
+}
+
+/*--------------------------------------------------------------
+# Content
+--------------------------------------------------------------*/
+
+/*------------ Homepage ---------------*/
+
+
+.home-bottom{
+    padding: 4em 0;
+}
+.home .hero-image{
+    position: relative;
+        .hero-overlay{
+        color: #fff; 
+        h2{
+            color: $colour-primary;
+        }
+    }
+}
+.hero-overlay p{
+    font-size: 1.2rem;
+}
+.home-sidebar{
+    border: 2px solid $colour-secondary;
+    border-top: none;
+}
+.sidebar-post {
+    margin: 2em;
+    padding-bottom: 2em;
+    border-bottom: 1px solid $colour-secondary;
+}
+.header-right{
+    padding: 1em;
+    align-items: center;
+}
+/*------------ Team page ---------------*/
+
+.team-member {
+    margin-bottom: 3em;
+    .col-8{
+        padding-bottom: 1em;
+    }
+    img{
+        -webkit-filter: grayscale(100%);
+        filter: grayscale(100%);
+        &:hover{
+        -webkit-filter: none;
+        filter: none;
+        }
+    }
+    .entry-content{
+        border-top: 1px solid;
+        padding-top: 1.4em;
+        p{
+            margin-bottom: 1em;
+            font-size: 0.9em;
+        }
+    }
+}
+
+
+/*------------ Contact page ----------------*/
+
+.contact-page-details{
+    font-size:1.4em;
+}
+
+/*------------ Page sections ---------------*/
+.hero-image{
+	@include full_bleed;
+    margin-top: -128px;
+    min-height: 320px;
+    display: flex;
+}
+.home .hero-image{
+    min-height: 120vh;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.page-band{
+	@include full_bleed;
+	padding-top: 2em;
+	padding-bottom: 2em;
+        @at-root .home & {
+            padding-top: 1.4em;
+            padding-bottom: 1.4em;
+        }
+}
+.dark-bg{
+    background: $opaque-gradient;
+    color: #fff;
+}
+.light-grey-bg{
+    background-color: $light-grey;
+}
+.dark-grey-bg{
+    background-color: $dark-grey;
+    color: #fff;
+}
+
+.post-card {
+    margin-bottom: 3rem;
+}
+
+.single .entry-content{
+    margin-bottom: 6em;
+    margin-top:4em;
+}
+.single .entry-title{
+    color: $colour-primary;
+}
+.single .entry-meta {
+    margin-bottom: 2em;
+}
+span.posted-on {
+    color: $colour-primary;
+    font-size: 1rem;
+    margin: 1.4rem 0 0rem;
+    display: inline-block;
+}
+
+
+/* Make sure embeds and iframes fit their containers. */
+embed,
+iframe,
+object {
+	max-width: 100%;
+}
+
+.alignright{
+    float:right;
+}
+.alignleftt{
+    float:left;
+}
+
+.site-footer{
+    font-size: 0.75em;
+    padding-top: 3em;
+    padding-bottom: 4em;
+    .container-fluid > .row{
+        padding: 3em 0;
+        &.footer-connect {
+        padding: 5em 0;
+        }
+    }
+    .initiative-logos img.logo{
+        width: 80%;
+        margin-bottom: 3em;
+    }
+    img.aic-logo{
+        width: 64%;
+        margin-bottom: 3em;
+    }
+    .baseline span{
+        float: right;
+        font-weight: 400;
+    }
+    p.logo-header{
+        font-weight: 400;
+        margin-bottom: 1.4em;
+    }
+    h3{
+        font-size: 1em;
+    }
+}
+
+
+.footer-connect {
+    .border-top{
+    border-top: 1px solid;
+    padding-top: 2em;
+    }
+}
+.footer-text-link {
+    color: #fff;
+    padding-right: 1em;
+    &:hover, &:visited{
+        color:#fff;
+    }
+}
+.social-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 15px;
+}
+
+/*--------------------------------------------------------------
+Media Queries
+--------------------------------------------------------------*/
+/*--Medium devices (tablets, 768px and up)---*/
+@media (max-width: 512px) {    
+    .home .hero-image .hero-overlay{
+        align-self: flex-end;   
+    }
+}
+
+
+/*--Medium devices (tablets, 768px and up)---*/
+@media (min-width: 768px) { 
+    #mobile-menu-icon{
+    display: none;
+    }
+    blockquote,
+    .block-quote {
+    font-size: 1.4rem;
+    }
+}
+
+/*--Big devices (desktops, 992px and up)---*/
+@media (min-width: 992px) {
+    .nav-container{
+    background-color: transparent;
+    }
+    .navbar-brand img{
+        height: 80px;
+    }
+    body, button, input, select, optgroup {
+        font-size: 16px;
+    }
+    .header-right{
+        width: 68%;
+        padding: 0;
+        .header-search{
+            overflow: hidden;
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 32px;
+            .search-form {
+                input[type=submit]{
+                    text-indent: -200px;
+                    background-image: url('imgs/search.svg');
+                    background-repeat: no-repeat;
+                    background-size: 25px;
+                    background-position: center;
+                    width: 32px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    .nav-container{
+        ul{
+            width: 100%;
+            justify-content: flex-end;
+            li{
+                width: 14.5%;
+                text-align: center;
+            }
+            a{
+                padding: 2.1em .5rem;
+                border-bottom: 3px solid transparent;
+                &:hover{
+                    border-bottom: 3px solid #fff;
+                }
+                &:focus{
+                    outline: none;
+                }
+            }
+        }
+        
+        li.active {
+            a{
+                border-bottom: 3px solid #fff;
+                }
+            ul li a{
+                border-bottom: none;
+                &:focus{
+                    background-color: #fff;
+                    }
+                }
+            }
+        li.show a{
+            border-bottom: none;
+            }
+        li ul{
+            margin-top:-10px;
+            width: 100%;
+            li {
+                width: 100%;
+                a{
+            padding: 0.2em 0.4em;
+            color: #fff;
+            font-size: 0.8rem;
+            }
+            }
+        }
+        li ul li a:focus{
+            background-color: #fff;
+        }
+
+    }
+
+    .nav-hide li ul.dropdown-menu {
+        margin-top:-154px;
+    }
+
+    .page-band{
+        @include full_bleed;
+        padding-top:4em;
+        padding-bottom: 4em;
+        @at-root .home & {
+            padding-top:2em;
+            padding-bottom: 2em;
+        }
+    }
+
+    ul.list-inline{
+    display: flex;
+    justify-content: space-between;
+        li{
+            border-right: 1px solid;
+            padding: 0.3em 1em 0;
+        }
+        li:last-child{
+            border-right: none;
+        }
+    }
+}
+
+/*--Large devices (large desktops, 1200px and up)---*/
+@media (min-width: 1200px) {
+    .home .hero-image .hero-overlay h2{
+        font-size: 2.4em;
+    }
+    .team-member {
+        padding-right: 6em;
+    }
+    ul.boxes{
+        padding-left: 2em;
+    }
+    blockquote {
+        line-height: 1.4em;
+        margin: 2em 0;
+        padding-left: 1em;
+        border-left: 2px solid;
+    }
+}
+
+/*--Extra large devices (desktops, 1372px and up)---*/
+@media (min-width: 1372px) {
+    .page-band{
+        @include full_bleed;
+        padding-top:6em;
+        padding-bottom: 6em;
+        @at-root .home & {
+            padding-top:3.5em;
+            padding-bottom: 3.5em;
+        }
+    }
+}
+
+
+/*--Largest devices (desktops, 1660px and up)---*/
+@media (min-width: 1660px) {
+    :root {
+    font-size: 18px;
+    }
+    .pushy {
+    width: 46%;
+    }
+}
